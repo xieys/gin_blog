@@ -45,7 +45,15 @@ func GetUsers(pageSize int, pageNum int) []User {
 
 // 编辑用户
 
-// 删除用户
+// DeleteUser 删除用户
+func DeleteUser(id int) int {
+	var user User
+	err = db.Where("id = ?", id).Delete(&user).Error
+	if err != nil {
+		return errmsg.ERROR
+	}
+	return errmsg.SUCCESS
+}
 
 func (u *User) BeforeSave(tx *gorm.DB) (err error) {
 	u.Password = ScryptPw(u.Password)
