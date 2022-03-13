@@ -22,6 +22,10 @@ func InitRouter() {
 		// 文章模块的路由接口
 
 		// 分类模块的用户接口
+		router.POST("category/add", v1.AddCate)
+		router.GET("categories", v1.GetCates)
+		router.PUT("category/:id", v1.EditCate)
+		router.DELETE("category/:id", v1.DeleteCate)
 	}
 
 	r.Run(utils.HttpPort)
