@@ -10,11 +10,6 @@ import (
 
 var code int
 
-// UserExit 查询用户是否存在
-func UserExit(c *gin.Context) {
-
-}
-
 // AddUser 添加用户
 func AddUser(c *gin.Context) {
 	var data model.User
@@ -61,6 +56,22 @@ func GetUsers(c *gin.Context) {
 
 // EditUser 编辑用户
 func EditUser(c *gin.Context) {
+	var user model.User
+	_ = c.ShouldBindJSON(&user)
+	id, _ := strconv.Atoi(c.Param("id"))
+	code = model.CheckUser(user.Username)
+	if code == errmsg.SUCCESS {
+		model.EditUser(id, &user)
+	}
+
+	if code == errmsg.ERROR_USERNAME_USED {
+		c.Abort()
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"status": code,
+		"msg":    errmsg.GetErrMsg(code),
+	})
 
 }
 

@@ -43,7 +43,18 @@ func GetUsers(pageSize int, pageNum int) []User {
 	return users
 }
 
-// 编辑用户
+// EditUser 编辑用户
+func EditUser(id int, data *User) int {
+	var user User
+	maps := make(map[string]interface{})
+	maps["username"] = data.Username
+	maps["role"] = data.Role
+	err = db.Model(&user).Where("id = ?", id).Updates(maps).Error
+	if err != nil {
+		return errmsg.ERROR
+	}
+	return errmsg.SUCCESS
+}
 
 // DeleteUser 删除用户
 func DeleteUser(id int) int {
