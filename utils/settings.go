@@ -16,6 +16,11 @@ var (
 	DbUser     string
 	DbPassword string
 	DbName     string
+
+	AccessKey  string
+	SecretKey  string
+	Bucket     string
+	QiniuSever string
 )
 
 func init() {
@@ -26,6 +31,7 @@ func init() {
 
 	loadServer(cfg)
 	loadData(cfg)
+	loadQiNiu(cfg)
 
 }
 
@@ -42,4 +48,11 @@ func loadData(cfg *ini.File) {
 	DbUser = cfg.Section("database").Key("DbUser").String()
 	DbPassword = cfg.Section("database").Key("DbPassword").String()
 	DbName = cfg.Section("database").Key("DbName").String()
+}
+
+func loadQiNiu(cfg *ini.File) {
+	AccessKey = cfg.Section("qiniu").Key("AccessKey").String()
+	SecretKey = cfg.Section("qiniu").Key("SecretKey").String()
+	Bucket = cfg.Section("qiniu").Key("Bucket").String()
+	QiniuSever = cfg.Section("qiniu").Key("QiniuSever").String()
 }

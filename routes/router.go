@@ -28,6 +28,9 @@ func InitRouter() {
 		auth.POST("category/add", v1.AddCate)
 		auth.PUT("category/:id", v1.EditCate)
 		auth.DELETE("category/:id", v1.DeleteCate)
+
+		//	上传文件
+		auth.POST("upload", v1.UpLoad)
 	}
 
 	router := r.Group("api/v1")
