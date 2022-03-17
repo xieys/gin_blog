@@ -12,4 +12,5 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
-# config/config.ini
+log/*
+config/config.ini
