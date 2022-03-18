@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func CorsHandler() gin.HandlerFunc {
+func Cors() gin.HandlerFunc {
 
 	return func(c *gin.Context) {
 		cors.New(cors.Config{

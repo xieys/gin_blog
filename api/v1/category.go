@@ -40,17 +40,16 @@ func GetCates(c *gin.Context) {
 		pageNum = 1
 	}
 
-	data := model.GetCates(pageSize, pageNum)
+	data, total := model.GetCates(pageSize, pageNum)
 	code = errmsg.SUCCESS
 	c.JSON(http.StatusOK, gin.H{
 		"status": code,
 		"data":   data,
+		"total":  total,
 		"msg":    errmsg.GetErrMsg(code),
 	})
 
 }
-
-// todo 查询分类下的所有文章
 
 // EditCate 编辑分类
 func EditCate(c *gin.Context) {
